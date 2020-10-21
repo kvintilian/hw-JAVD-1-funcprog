@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -20,8 +19,7 @@ public class Main {
         Function<String, Set<String>> dictFunc = s -> Arrays.stream(
                 s.trim().toLowerCase().replaceAll("\\p{Punct}", "").split("\\s"))
                 .collect(Collectors.toSet());
-        Set<String> dictionary = new HashSet<>(dictFunc.apply(srcText));
         System.out.println("Словарь аборигенов: ");
-        dictionary.stream().sorted().forEach(System.out::println); // монада через Stream API
+        dictFunc.apply(srcText).stream().sorted().forEach(System.out::println); // монада через Stream API
     }
 }
